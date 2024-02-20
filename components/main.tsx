@@ -33,11 +33,11 @@ const Main = ({ children }: MainProps) => {
                 title: "projects",
                 href: "/projects",
               },
-              {
-                icon: PenLine,
-                title: "writing",
-                href: "/writing",
-              },
+              // {
+              //   icon: PenLine,
+              //   title: "writing",
+              //   href: "/writing",
+              // },
             ]}
           />
         </TooltipProvider>

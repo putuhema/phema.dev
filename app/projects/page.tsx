@@ -18,6 +18,8 @@ export default function Page() {
               header={item.header}
               className={item.className}
               icon={item.icon}
+              url={item.url}
+              techstack={item.techstack}
             />
           ))}
         </BentoGrid>
@@ -31,31 +33,39 @@ const Skeleton = () => (
 const items = [
   {
     title: "Toten",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
+    description: "Toten is a multi-warehouse e-commerce platform for the clothing industry. The platform uses advanced inventory management algorithms to track stock levels across multiple warehouses in real-time, improving product availability and reducing stock-outs.",
     header: <Skeleton />,
     className: "md:col-span-2",
     icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
+    url: "https://github.com/purwadhikafullstack/JCWDOL01101",
+    techstack: ["Reactjs", "Tailwindcss", "Typescript", "Tanstack Query", "Clerk", "Nodejs", "Expressjs", "Sequelize", "shadcn/ui"]
   },
   {
-    title: "The Digital Revolution",
-    description: "Dive into the transformative power of technology.",
+    title: "Hangout",
+    description: "Hangout an event management application, to simplify the complex and time-consuming process of event planning and organization.",
     header: <Skeleton />,
     className: "md:col-span-1",
-    icon: <FileIcon className="h-4 w-4 text-neutral-500" />,
+    icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
+    url: "https://github.com/putuhema/Hangout",
+    techstack: ["Reactjs", "JS", "Clerk", "Nodejs", "Expressjs", "Prisma"]
   },
   {
-    title: "The Art of Design",
+    title: "Kasirku",
     description: "Discover the beauty of thoughtful and functional design.",
     header: <Skeleton />,
     className: "md:col-span-1",
-    icon: <SunIcon className="h-4 w-4 text-neutral-500" />,
+    icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
+    url: "https://github.com/putuhema/kasirku",
+    techstack: ["Reactjs", "JS", "Nodejs", "Expressjs", "Chakra UI", "Redux"]
   },
   {
-    title: "The Power of Communication",
+    title: "Giziku",
     description:
-      "Understand the impact of effective communication in our lives.",
+      "Giziku is a stunting detection app, to address the global health issue of stunting in human development. The app uses advanced algorithms to analyze health parameters for early detection of stunting.",
     header: <Skeleton />,
     className: "md:col-span-2",
-    icon: <TableIcon className="h-4 w-4 text-neutral-500" />,
+    icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
+    url: "https://github.com/putuhema/giziku",
+    techstack: ["Javascript", "HTML", "Pug", "CSS", "Expressjs"]
   },
 ];

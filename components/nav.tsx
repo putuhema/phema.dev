@@ -22,11 +22,10 @@ const Nav = ({ links }: NavProps) => {
   return (
     <nav className="flex flex-col justify-center items-center gap-4 p-2 py-8 border rounded-full bg-background/50 backdrop-blur-md">
       {links.map((link) => (
-        <Tooltip delayDuration={0}>
+        <Tooltip delayDuration={0} key={link.title}>
           <TooltipTrigger>
             <Link
               href={link.href}
-              key={link.title}
               className={cn("flex items-center text-muted-foreground/50 hover:text-foreground transition-all duration-200 rounded-md w-full", pathname === link.href && "text-foreground")}
             >
               <link.icon className="w-6 h-6" />

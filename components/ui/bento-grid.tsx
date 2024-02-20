@@ -1,5 +1,6 @@
 
 import { cn } from "@/lib/utils";
+import { Badge } from "./badge";
 
 export const BentoGrid = ({
   className,
@@ -26,12 +27,16 @@ export const BentoGridItem = ({
   description,
   header,
   icon,
+  url,
+  techstack
 }: {
   className?: string;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
   header?: React.ReactNode;
   icon?: React.ReactNode;
+  url?: string;
+  techstack?: string[];
 }) => {
   return (
     <div
@@ -43,11 +48,22 @@ export const BentoGridItem = ({
       {header}
       <div className="group-hover/bento:translate-x-2 transition duration-200">
         {icon}
-        <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
-          {title}
-        </div>
-        <div className="font-sans font-normal text-neutral-600 text-xs dark:text-neutral-300">
-          {description}
+        <a className="cursor-pointer" href={url} target="_blank" rel="noreferrer">
+          <div className="font-sans font-bold text-neutral-600 dark:text-neutral-200 mb-2 mt-2">
+            {title}
+          </div>
+          <div className="font-sans font-normal text-neutral-600 text-xs dark:text-neutral-300">
+            {description}
+          </div>
+        </a>
+        <div className="flex flex-wrap gap-2 items-center mt-2 w-full">
+          {
+            techstack && techstack.map(stack => (
+              <Badge key={stack} className="bg-background/80 hover:bg-background border rounded-full text-primary">
+                {stack}
+              </Badge>
+            ))
+          }
         </div>
       </div>
     </div>
