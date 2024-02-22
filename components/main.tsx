@@ -1,19 +1,28 @@
-"use client"
-import * as React from "react"
+"use client";
+import * as React from "react";
 
-import Nav from "./nav"
-import { ModeToggle } from "./mode-toggle"
-import { FollowerPointerCard } from "./ui/following-pointer"
-import { Icon } from "./ui/icon"
-import { TypewriterEffect } from "./ui/typewritter"
-import { Home, PenLine, Sparkles } from "lucide-react"
-import Footer from "./footer"
-import { TooltipProvider } from "@/components/ui/tooltip"
+import Nav from "./nav";
+import { ModeToggle } from "./mode-toggle";
+import { Home, Sparkles } from "lucide-react";
+import Footer from "./footer";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { useRouter } from "next/navigation";
+import { useKeyPress } from "@/hooks/useKeyPress";
 
 interface MainProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 const Main = ({ children }: MainProps) => {
+  const router = useRouter();
+  const onKeyPress = (event: KeyboardEvent) => {
+    event.preventDefault();
+    if (event.code === "Digit1") {
+      router.push("/");
+    } else if (event.code === "Digit2") {
+      router.push("/projects");
+    }
+  };
+  useKeyPress(["Digit1", "Digit2"], onKeyPress);
   return (
     <div className="w-full relative">
       <div className="absolute  z-50 top-0 right-0 p-4">
@@ -27,11 +36,13 @@ const Main = ({ children }: MainProps) => {
                 icon: Home,
                 title: "home",
                 href: "/",
+                shortcut: "1",
               },
               {
                 icon: Sparkles,
                 title: "projects",
                 href: "/projects",
+                shortcut: "2",
               },
               // {
               //   icon: PenLine,
@@ -47,7 +58,7 @@ const Main = ({ children }: MainProps) => {
         <Footer />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

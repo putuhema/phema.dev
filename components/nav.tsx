@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
@@ -7,34 +7,33 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 interface NavProps {
   links: {
     icon: LucideIcon;
     title: string;
     href: string;
+    shortcut: string;
   }[];
 }
 
 const Nav = ({ links }: NavProps) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   return (
-    <nav className="flex flex-col justify-center items-center gap-4 p-2 py-8 border rounded-full bg-background/50 backdrop-blur-md">
+    <nav className="flex flex-col justify-center items-center gap-2 p-2 py-8 ">
       {links.map((link) => (
-        <Tooltip delayDuration={0} key={link.title}>
-          <TooltipTrigger>
-            <Link
-              href={link.href}
-              className={cn("flex items-center text-muted-foreground/50 hover:text-foreground transition-all duration-200 rounded-md w-full", pathname === link.href && "text-foreground")}
-            >
-              <link.icon className="w-6 h-6" />
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent align="center" side="right" sideOffset={15} className="bg-background/60 backdrop-blur-md text-primary border ">
-            <p>{link.title}</p>
-          </TooltipContent>
-        </Tooltip>
+        <Link
+          key={link.title}
+          href={link.href}
+          className={cn(
+            "flex items-center text-muted-foreground/50 hover:text-foreground transition-all duration-200 rounded-md w-full",
+            pathname === link.href && "text-foreground",
+          )}
+        >
+          <p>/{link.title}</p>
+          <p className="px-2  border rounded-md ml-2">{link.shortcut}</p>
+        </Link>
       ))}
     </nav>
   );
