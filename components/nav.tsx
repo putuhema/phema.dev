@@ -26,10 +26,10 @@ const Nav = ({ links }: NavProps) => {
             pathname === link.href && "text-foreground",
           )}
         >
-          <p>/{link.title}</p>
-          <p className=" text-xs h-5 w-5 grid place-content-center  border rounded-md ml-2">
+          <p className=" text-xs h-5 w-5 grid place-content-center  border rounded-md mr-2">
             {link.shortcut}
           </p>
+          <p>/{link.title}</p>
         </Link>
       ))}
     </nav>
