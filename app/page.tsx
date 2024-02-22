@@ -1,9 +1,7 @@
-import { ModeToggle } from "@/components/mode-toggle";
-import { buttonVariants } from "@/components/ui/button";
+import Footer from "@/components/footer";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { Icon } from "@/components/ui/icon";
 import { TypewriterEffect } from "@/components/ui/typewritter";
-import { cn } from "@/lib/utils";
 
 export default function Home() {
   return (
@@ -19,6 +17,9 @@ export default function Home() {
             <TypewriterEffect words={[{ text: "@putuhema" }]} />
           </div>
         </FollowerPointerCard>
+      </div>
+      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 p-4">
+        <Footer />
       </div>
     </div>
   );

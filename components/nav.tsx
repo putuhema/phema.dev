@@ -3,11 +3,6 @@ import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 interface NavProps {
   links: {
@@ -32,7 +27,9 @@ const Nav = ({ links }: NavProps) => {
           )}
         >
           <p>/{link.title}</p>
-          <p className="px-2  border rounded-md ml-2">{link.shortcut}</p>
+          <p className=" text-xs h-5 w-5 grid place-content-center  border rounded-md ml-2">
+            {link.shortcut}
+          </p>
         </Link>
       ))}
     </nav>

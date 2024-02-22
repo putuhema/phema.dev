@@ -1,14 +1,12 @@
-import { cn } from "@/lib/utils";
 import React from "react";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { ClipboardIcon, FileIcon, GitHubLogoIcon, SunIcon, TableIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export default function Page() {
   return (
     <main className="bg-background  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative h-[100dvh]">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_50%,black)]"></div>
       <div className="max-w-4xl mx-auto pt-20 ">
-        <p className="my-2">/projects</p>
         <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
           {items.map((item, i) => (
             <BentoGridItem
@@ -33,21 +31,33 @@ const Skeleton = () => (
 const items = [
   {
     title: "Toten",
-    description: "Toten is a multi-warehouse e-commerce platform for the clothing industry. The platform uses advanced inventory management algorithms to track stock levels across multiple warehouses in real-time, improving product availability and reducing stock-outs.",
+    description:
+      "Toten is a multi-warehouse e-commerce platform for the clothing industry. The platform uses advanced inventory management algorithms to track stock levels across multiple warehouses in real-time, improving product availability and reducing stock-outs.",
     header: <Skeleton />,
     className: "md:col-span-2",
     icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
     url: "https://github.com/purwadhikafullstack/JCWDOL01101",
-    techstack: ["Reactjs", "Tailwindcss", "Typescript", "Tanstack Query", "Clerk", "Nodejs", "Expressjs", "Sequelize", "shadcn/ui"]
+    techstack: [
+      "Reactjs",
+      "Tailwindcss",
+      "Typescript",
+      "Tanstack Query",
+      "Clerk",
+      "Nodejs",
+      "Expressjs",
+      "Sequelize",
+      "shadcn/ui",
+    ],
   },
   {
     title: "Hangout",
-    description: "Hangout an event management application, to simplify the complex and time-consuming process of event planning and organization.",
+    description:
+      "Hangout an event management application, to simplify the complex and time-consuming process of event planning and organization.",
     header: <Skeleton />,
     className: "md:col-span-1",
     icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
     url: "https://github.com/putuhema/Hangout",
-    techstack: ["Reactjs", "JS", "Clerk", "Nodejs", "Expressjs", "Prisma"]
+    techstack: ["Reactjs", "JS", "Clerk", "Nodejs", "Expressjs", "Prisma"],
   },
   {
     title: "Kasirku",
@@ -56,7 +66,7 @@ const items = [
     className: "md:col-span-1",
     icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
     url: "https://github.com/putuhema/kasirku",
-    techstack: ["Reactjs", "JS", "Nodejs", "Expressjs", "Chakra UI", "Redux"]
+    techstack: ["Reactjs", "JS", "Nodejs", "Expressjs", "Chakra UI", "Redux"],
   },
   {
     title: "Giziku",
@@ -66,6 +76,6 @@ const items = [
     className: "md:col-span-2",
     icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
     url: "https://github.com/putuhema/giziku",
-    techstack: ["Javascript", "HTML", "Pug", "CSS", "Expressjs"]
+    techstack: ["Javascript", "HTML", "Pug", "CSS", "Expressjs"],
   },
 ];
