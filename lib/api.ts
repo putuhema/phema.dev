@@ -4,7 +4,7 @@ import matter from "gray-matter";
 import { join } from "path";
 import readingTime from "reading-time";
 
-const postsDirectory = join(process.cwd(), "_posts");
+const postsDirectory = join(process.cwd(), "content");
 
 export function getPostSlugs() {
   return fs.readdirSync(postsDirectory);

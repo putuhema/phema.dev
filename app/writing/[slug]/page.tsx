@@ -16,7 +16,7 @@ const Post = async ({ params }: Params) => {
   }
 
   return (
-    <main className="max-w-4xl mx-auto mb-10">
+    <main className="max-w-6xl mx-auto mb-10">
       <PostHeader
         title={post.title}
         date={post.date}

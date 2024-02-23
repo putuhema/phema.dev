@@ -1,41 +1,77 @@
 import React from "react";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { Card } from "@/components/card";
+import Project from "@/components/project";
+import Particles from "@/components/particles";
 
 export default function Page() {
   return (
-    <main className="bg-background dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative h-[100dvh]">
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_50%,black)]"></div>
-      <div className="max-w-4xl mx-auto pt-10 ">
-        <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
-          {items.map((item, i) => (
-            <BentoGridItem
-              key={i}
-              title={item.title}
-              description={item.description}
-              header={item.header}
-              className={item.className}
-              icon={item.icon}
-              url={item.url}
-              techstack={item.techstack}
-            />
-          ))}
-        </BentoGrid>
+    <div className="flex flex-col w-screen h-screen overflow-hidden bg-gradient-to-tl from-background  via-zinc-800/20 to-background">
+      <Particles
+        className="absolute inset-0 -z-10 animate-fade-in"
+        quantity={100}
+      />
+      <div className="max-w-6xl mx-auto pt-10">
+        <h1 className="text-2xl font-bold">Projects</h1>
+        <p>projects that i worked on college, bootcamp and my free time.</p>
+        <div className="border border-b my-8 " />
+        <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4">
+            {items
+              .filter((_, i) => i % 3 === 0)
+              .map((item, i) => (
+                <Card key={i}>
+                  <Project
+                    project={{
+                      ...item,
+                    }}
+                  />
+                </Card>
+              ))}
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            {items
+              .filter((_, i) => i % 3 === 1)
+              .map((item, i) => (
+                <Card key={i}>
+                  <Project
+                    project={{
+                      ...item,
+                    }}
+                  />
+                </Card>
+              ))}
+          </div>
+          <div className="grid grid-cols-1 gap-4">
+            {items
+              .filter((_, i) => i % 3 === 2)
+              .map((item, i) => (
+                <Card key={i}>
+                  <Project
+                    project={{
+                      ...item,
+                    }}
+                  />
+                </Card>
+              ))}
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl   dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
-);
 const items = [
   {
+    title: "phema.dev",
+    date: "22 Feb 2024",
+    description: "The website you're looking at",
+    url: "https://github.com/putuhema/phema.dev",
+    techstack: ["Reactjs", "Tailwindcss", "Typescript", "shadcn/ui"],
+  },
+  {
     title: "Toten",
+    date: "22 Feb 2024",
     description:
-      "Toten is a multi-warehouse e-commerce platform for the clothing industry. The platform uses advanced inventory management algorithms to track stock levels across multiple warehouses in real-time, improving product availability and reducing stock-outs.",
-    header: <Skeleton />,
-    className: "md:col-span-2",
-    icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
+      "Toten is a multi-warehouse e-commerce platform for the clothing industry.",
     url: "https://github.com/purwadhikafullstack/JCWDOL01101",
     techstack: [
       "Reactjs",
@@ -51,30 +87,24 @@ const items = [
   },
   {
     title: "Hangout",
+    date: "22 Feb 2024",
     description:
       "Hangout an event management application, to simplify the complex and time-consuming process of event planning and organization.",
-    header: <Skeleton />,
-    className: "md:col-span-1",
-    icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
     url: "https://github.com/putuhema/Hangout",
     techstack: ["Reactjs", "JS", "Clerk", "Nodejs", "Expressjs", "Prisma"],
   },
   {
     title: "Kasirku",
+    date: "22 Feb 2024",
     description: "Discover the beauty of thoughtful and functional design.",
-    header: <Skeleton />,
-    className: "md:col-span-1",
-    icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
     url: "https://github.com/putuhema/kasirku",
     techstack: ["Reactjs", "JS", "Nodejs", "Expressjs", "Chakra UI", "Redux"],
   },
   {
     title: "Giziku",
+    date: "22 Feb 2024",
     description:
-      "Giziku is a stunting detection app, to address the global health issue of stunting in human development. The app uses advanced algorithms to analyze health parameters for early detection of stunting.",
-    header: <Skeleton />,
-    className: "md:col-span-2",
-    icon: <GitHubLogoIcon className="h-4 w-4 text-neutral-500" />,
+      "Giziku is a stunting detection app, to address the global health issue of stunting in human development.",
     url: "https://github.com/putuhema/giziku",
     techstack: ["Javascript", "HTML", "Pug", "CSS", "Expressjs"],
   },

@@ -5,7 +5,7 @@ const Page = () => {
   const posts = getAllPosts();
 
   return (
-    <main className="max-w-xl lg:max-w-4xl mx-auto pt-10 ">
+    <main className="max-w-xl lg:max-w-6xl mx-auto pt-10 ">
       {posts.length > 0 ? (
         <div className="flex flex-col gap-2">
           {posts.map((post) => (
