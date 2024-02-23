@@ -5,11 +5,11 @@ import Particles from "@/components/particles";
 
 export default function Page() {
   return (
-    <div className="flex flex-col w-screen h-screen overflow-hidden bg-gradient-to-tl from-background  via-zinc-800/20 to-background">
-      <Particles
-        className="absolute inset-0 -z-10 animate-fade-in"
-        quantity={100}
-      />
+    <div className="flex flex-col w-screen h-screen overflow-hidden bg-gradient-to-tl from-background to-background">
+      {/* <Particles */}
+      {/*   className="absolute inset-0 z-0 animate-fade-in" */}
+      {/*   quantity={100} */}
+      {/* /> */}
       <div className="max-w-6xl mx-auto pt-10">
         <h1 className="text-2xl font-bold">Projects</h1>
         <p>projects that i worked on college, bootcamp and my free time.</p>
