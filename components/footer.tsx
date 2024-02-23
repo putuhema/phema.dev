@@ -30,24 +30,35 @@ const Footer = () => {
           {
             icon: <FileIcon />,
             title: "CV",
-            url: "#",
+            url: "/cv-ats-putu-hendra-mahendra.pdf",
           },
-        ].map((social) => (
-          <a
-            href={social.url}
-            key={social.title}
-            target="_blank"
-            rel="noreferrer"
-            className={cn(buttonVariants({ variant: "link" }), "w-max")}
-          >
-            <span className="mr-2">{social.icon}</span>
-            {social.title}
-          </a>
-        ))}
+        ].map((social) =>
+          social.title !== "CV" ? (
+            <a
+              href={social.url}
+              key={social.title}
+              target="_blank"
+              rel="noreferrer"
+              className={cn(buttonVariants({ variant: "link" }), "w-max")}
+            >
+              <span className="mr-2">{social.icon}</span>
+              {social.title}
+            </a>
+          ) : (
+            <a
+              href={social.url}
+              key={social.title}
+              download
+              className={cn(buttonVariants({ variant: "link" }), "w-max")}
+            >
+              <span className="mr-2">{social.icon}</span>
+              {social.title}
+            </a>
+          ),
+        )}
       </div>
     </footer>
   );
 };
 
 export default Footer;
-

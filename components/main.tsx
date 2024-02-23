@@ -3,8 +3,7 @@ import * as React from "react";
 
 import Nav from "./nav";
 import { ModeToggle } from "./mode-toggle";
-import { Home, Sparkles } from "lucide-react";
-import Footer from "./footer";
+import { Home, PenLine, Sparkles } from "lucide-react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useRouter } from "next/navigation";
 import { useKeyPress } from "@/hooks/useKeyPress";
@@ -20,9 +19,11 @@ const Main = ({ children }: MainProps) => {
       router.push("/");
     } else if (event.code === "Digit2") {
       router.push("/projects");
+    } else if (event.code === "Digit3") {
+      router.push("/writing");
     }
   };
-  useKeyPress(["Digit1", "Digit2"], onKeyPress);
+  useKeyPress(["Digit1", "Digit2", "Digit3"], onKeyPress);
   return (
     <div className="w-full relative">
       <div className="absolute  z-50 top-0 right-0 p-4">
@@ -44,11 +45,12 @@ const Main = ({ children }: MainProps) => {
                 href: "/projects",
                 shortcut: "2",
               },
-              // {
-              //   icon: PenLine,
-              //   title: "writing",
-              //   href: "/writing",
-              // },
+              {
+                icon: PenLine,
+                title: "writing",
+                href: "/writing",
+                shortcut: "3",
+              },
             ]}
           />
         </TooltipProvider>

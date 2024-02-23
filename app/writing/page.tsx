@@ -1,10 +1,24 @@
-import { Construction } from "lucide-react"
+import PostPreview from "@/components/post-preview";
+import { getAllPosts } from "@/lib/api";
+
 const Page = () => {
-  return <div>
-    <h1 className="text-muted-foreground text-center flex justify-center items-center gap-2">
-      <Construction />
-      WIP
-    </h1>
-  </div>;
+  const posts = getAllPosts();
+
+  return (
+    <main className="max-w-xl lg:max-w-4xl mx-auto pt-10">
+      <div className="flex flex-col gap-2">
+        {posts.map((post) => (
+          <PostPreview
+            key={post.slug}
+            slug={post.slug}
+            title={post.title}
+            date={post.date}
+            excerpt={post.excerpt}
+            readingTime={post.readingTime}
+          />
+        ))}
+      </div>
+    </main>
+  );
 };
 export default Page;

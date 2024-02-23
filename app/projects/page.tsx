@@ -6,7 +6,7 @@ export default function Page() {
   return (
     <main className="bg-background  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative h-[100dvh]">
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_50%,black)]"></div>
-      <div className="max-w-4xl mx-auto pt-20 ">
+      <div className="max-w-4xl mx-auto pt-10 ">
         <BentoGrid className="max-w-4xl mx-auto md:auto-rows-[20rem]">
           {items.map((item, i) => (
             <BentoGridItem
