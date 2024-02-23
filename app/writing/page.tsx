@@ -14,6 +14,7 @@ const Page = () => {
               key={writing.slug}
               slug={writing.slug}
               title={writing.title}
+              readingTime={writing.readTime}
               description={writing.description}
             />
           ))}

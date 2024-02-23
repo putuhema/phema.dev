@@ -3,6 +3,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import readTime from "reading-time";
 
 const computedFields = {
   path: {
@@ -21,9 +22,6 @@ export const Project = defineDocumentType(() => ({
   contentType: "mdx",
 
   fields: {
-    published: {
-      type: "boolean",
-    },
     title: {
       type: "string",
       required: true,
@@ -40,6 +38,13 @@ export const Project = defineDocumentType(() => ({
     },
     repository: {
       type: "string",
+      required: true,
+    },
+    techstack: {
+      type: "list",
+      of: {
+        type: "string",
+      },
     },
   },
   computedFields,
@@ -67,7 +72,13 @@ export const Writing = defineDocumentType(() => ({
       required: true,
     },
   },
-  computedFields,
+  computedFields: {
+    ...computedFields,
+    readTime: {
+      type: "string",
+      resolve: (doc) => readTime(doc.body.raw).text,
+    },
+  },
 }));
 
 export default makeSource({

@@ -23,7 +23,7 @@ const Post = async ({ params }: Params) => {
       <PostHeader
         title={writing.title}
         date={writing.date}
-        readingTime="2 min"
+        readingTime={writing.readTime}
       />
       <article className="prose prose-sm md:prose-base lg:prose-lg prose-gray dark:prose-invert">
         <Mdx code={writing.body.code} />

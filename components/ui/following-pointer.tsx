@@ -103,9 +103,9 @@ export const FollowerPointerCard = ({
       ref={ref}
       className={cn("relative", className)}
     >
-      <AnimatePresence mode="wait">
-        <FollowPointer x={firstX} y={firstY} title="Putu" />
-        <FollowPointer x={secondX} y={secondY} title="Mahendra" />
+      <AnimatePresence>
+        <FollowPointer x={firstX} y={firstY} title="Putu" key="putu" />
+        <FollowPointer x={secondX} y={secondY} title="Mahendra" key="mahendra" />
       </AnimatePresence>
       {children}
     </div>
