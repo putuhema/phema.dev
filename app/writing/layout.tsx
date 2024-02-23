@@ -1,3 +1,4 @@
+import Container from "@/components/container"
 import Nav from "@/components/nav"
 
 export default function WritingLayout({
@@ -7,10 +8,10 @@ export default function WritingLayout({
 }) {
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto w-max">
-        <Nav />
-      </div>
-      {children}
+      <Nav />
+      <Container>
+        {children}
+      </Container>
     </div>
   )
 }

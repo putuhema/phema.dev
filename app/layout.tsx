@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import Main from "@/components/main";
 
 export const metadata: Metadata = {
   title: "phema.dev",
@@ -22,7 +21,7 @@ export default function RootLayout({
           defaultTheme="dark"
           disableTransitionOnChange
         >
-          <Main>{children}</Main>
+          {children}
         </ThemeProvider>
       </body>
     </html>

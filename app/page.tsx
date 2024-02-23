@@ -13,9 +13,7 @@ export default function Home() {
         quantity={100}
       />
       <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-        <Nav />
-      </div>
+      <Nav />
       <div className="lg:w-[550px]">
         <FollowerPointerCard>
           <div className="border border-black/[0.2] dark:border-white/[0.2] flex flex-col items-start  mx-auto p-4 relative">

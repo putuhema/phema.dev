@@ -1,20 +1,21 @@
 import { Card } from "@/components/card";
+import Container from "@/components/container";
 import Nav from "@/components/nav";
 import Project from "@/components/project";
 import { allProjects } from "contentlayer/generated";
 
-export default function Page() {
-  const projects = allProjects;
+export default function Projects() {
+  const projects = allProjects.sort((a, b) => {
+    return new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() - new Date(a.date ?? Number.POSITIVE_INFINITY).getTime();
+  });
 
   return (
     <div className="flex flex-col h-screen overflow-hidden bg-gradient-to-tl from-background to-background">
-      <div className="mx-auto">
-        <Nav />
-      </div>
-      <div className="max-w-6xl mx-auto">
+      <Nav />
+      <Container>
         <h1 className="text-2xl font-bold">Projects</h1>
         <p>projects that i worked on college, bootcamp and my free time.</p>
-        <div className="border border-b my-8 " />
+        <div className="border border-b my-8" />
         <div className="grid grid-cols-3 gap-4">
           <div className="grid grid-cols-1 gap-4">
             {projects
@@ -68,7 +69,8 @@ export default function Page() {
               ))}
           </div>
         </div>
-      </div>
+
+      </Container>
     </div>
   );
 }

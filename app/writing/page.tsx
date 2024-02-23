@@ -2,10 +2,15 @@ import PostPreview from "@/components/post-preview";
 import { allWritings } from "contentlayer/generated"
 
 const Page = () => {
-  const writings = allWritings
+  const writings = allWritings.sort(
+    (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
+  );
 
   return (
-    <main className="max-w-xl lg:max-w-6xl mx-auto">
+    <main>
+      <h1 className="text-2xl font-bold">Writing</h1>
+      <p>I write about things i find interesting.</p>
+      <div className="border border-b my-8" />
       {writings.length > 0 ? (
         <div className="flex flex-col gap-2">
           {writings.map((writing) => (
@@ -20,7 +25,7 @@ const Page = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center">no post yet.</p>
+        <p className="text-center text-muted-foreground italic">no post yet.</p>
       )}
     </main>
   );
