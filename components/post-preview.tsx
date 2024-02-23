@@ -9,7 +9,6 @@ type PostPreviewProps = {
   readingTime: string | number;
 };
 
-// TODO: add how long to read  the post
 const PostPreview = ({
   title,
   slug,

@@ -24,6 +24,9 @@ const Nav = ({ links }: NavProps) => {
           className={cn(
             "flex items-center text-muted-foreground/50 hover:text-foreground transition-all duration-200 rounded-md w-full",
             pathname === link.href && "text-foreground",
+            pathname.startsWith("/writing") &&
+              link.href === "/writing" &&
+              "text-foreground",
           )}
         >
           <p className=" text-xs h-5 w-5 grid place-content-center  border rounded-md mr-2">

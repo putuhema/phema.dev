@@ -26,7 +26,7 @@ const Main = ({ children }: MainProps) => {
   useKeyPress(["Digit1", "Digit2", "Digit3"], onKeyPress);
   return (
     <div className="w-full relative">
-      <div className="absolute  z-50 top-0 right-0 p-4">
+      <div className="fixed z-50 top-0 right-0 p-4">
         <ModeToggle />
       </div>
       <div className="flex max-w-5xl mx-auto z-50 gap-10 absolute top-0 left-0 p-4">

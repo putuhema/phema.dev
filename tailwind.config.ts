@@ -81,6 +81,7 @@ const config = {
     },
   },
   plugins: [
+    require("@tailwindcss/typography"),
     require("tailwindcss-animate"),
     require("@tailwindcss/aspect-ratio"),
     addVariablesForColors,
@@ -124,4 +125,3 @@ function addVariablesForColors({ addBase, theme }: any) {
 }
 
 export default config;
-
