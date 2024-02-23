@@ -1,7 +1,10 @@
 import { getAllPosts, getPostBySlug } from "@/lib/api";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { allWritings } from "contentlayer/generated";
 import PostHeader from "@/components/post-header";
+import { Mdx } from "@/components/mdx"
+import "./mdx.css"
 
 interface Params {
   params: {
@@ -10,20 +13,20 @@ interface Params {
 }
 
 const Post = async ({ params }: Params) => {
-  const post = getPostBySlug(params.slug);
-  if (!post) {
+  const writing = allWritings.find((writing) => writing.slug === params.slug);
+  if (!writing) {
     return notFound();
   }
 
   return (
     <main className="max-w-6xl mx-auto mb-10">
       <PostHeader
-        title={post.title}
-        date={post.date}
-        readingTime={post.readingTime}
+        title={writing.title}
+        date={writing.date}
+        readingTime="2 min"
       />
       <article className="prose prose-sm md:prose-base lg:prose-lg prose-gray dark:prose-invert">
-        <MDXRemote source={post.content} />
+        <Mdx code={writing.body.code} />
       </article>
     </main>
   );
@@ -32,20 +35,18 @@ const Post = async ({ params }: Params) => {
 export default Post;
 
 export function generateMetadata({ params }: Params) {
-  const post = getPostBySlug(params.slug);
-  if (!post) {
-    return notFound();
+  const writing = allWritings.find(writing => writing.slug === params.slug)
+  if (!writing) {
+    return notFound()
   }
-  const title = `${post.title} | putuhema.dev`;
 
   return {
-    title,
-  };
+    title: writing.title,
+  }
 }
 
 export async function generateStaticParams() {
-  const posts = getAllPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
+  return allWritings.map((writing) => ({
+    slug: writing.slug,
   }));
 }

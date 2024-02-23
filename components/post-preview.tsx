@@ -5,8 +5,8 @@ type PostPreviewProps = {
   slug: string;
   title: string;
   date: string;
-  excerpt: string;
-  readingTime: string | number;
+  description: string;
+  readingTime?: string | number;
 };
 
 const PostPreview = ({
@@ -14,7 +14,7 @@ const PostPreview = ({
   slug,
   date,
   readingTime,
-  excerpt,
+  description
 }: PostPreviewProps) => {
   return (
     <div className="flex flex-col">
@@ -23,7 +23,7 @@ const PostPreview = ({
           <Link href={`/writing/${slug}`} className="hover:underline">
             {title}
           </Link>
-          <p className="text-muted-foreground">{excerpt}</p>
+          <p className="text-muted-foreground">{description}</p>
         </div>
         <div className="flex flex-col">
           <p className="text-sm text-muted-foreground">

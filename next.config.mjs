@@ -1,4 +1,5 @@
-import withMdx from "@next/mdx";
+import { withContentlayer } from "next-contentlayer";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
@@ -10,6 +11,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    mdxRs: true,
+  },
 };
 
-export default withMdx(nextConfig);
+export default withContentlayer(nextConfig);

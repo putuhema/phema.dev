@@ -68,11 +68,7 @@ export const TypewriterEffect = ({
     );
   };
   return (
-    <a
-      href="http://github.com/putuhema"
-      target="_blank"
-      className="cursor-none"
-    >
+    <a href="http://github.com/putuhema" target="_blank">
       <div
         className={cn(
           "text-base sm:text-xl md:text-3xl lg:text-5xl font-bold text-center",

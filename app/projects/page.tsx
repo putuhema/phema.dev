@@ -1,17 +1,19 @@
-import React from "react";
 import { Card } from "@/components/card";
+import MainNav from "@/components/main-nav";
+import Nav from "@/components/nav";
 import Project from "@/components/project";
-import Particles from "@/components/particles";
+import { allProjects } from "contentlayer/generated";
 
 export default function Page() {
+  const projects = allProjects;
+
   return (
-    <div className="flex flex-col w-screen h-screen overflow-hidden bg-gradient-to-tl from-background to-background">
-      {/* <Particles */}
-      {/*   className="absolute inset-0 z-0 animate-fade-in" */}
-      {/*   quantity={100} */}
-      {/* /> */}
-      <div className="max-w-6xl mx-auto pt-10">
-        <h1 className="text-2xl font-bold">Projects</h1>
+    <div className="flex flex-col h-screen overflow-hidden bg-gradient-to-tl from-background to-background">
+      <div className="mx-auto">
+        <Nav />
+      </div>
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-2xl font-bold">Projects {projects.length}</h1>
         <p>projects that i worked on college, bootcamp and my free time.</p>
         <div className="border border-b my-8 " />
         <div className="grid grid-cols-3 gap-4">

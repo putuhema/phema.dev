@@ -1,21 +1,20 @@
 import PostPreview from "@/components/post-preview";
-import { getAllPosts } from "@/lib/api";
+import { allWritings } from "contentlayer/generated"
 
 const Page = () => {
-  const posts = getAllPosts();
+  const writings = allWritings
 
   return (
-    <main className="max-w-xl lg:max-w-6xl mx-auto pt-10 ">
-      {posts.length > 0 ? (
+    <main className="max-w-xl lg:max-w-6xl mx-auto">
+      {writings.length > 0 ? (
         <div className="flex flex-col gap-2">
-          {posts.map((post) => (
+          {writings.map((writing) => (
             <PostPreview
-              key={post.slug}
-              slug={post.slug}
-              title={post.title}
-              date={post.date}
-              excerpt={post.excerpt}
-              readingTime={post.readingTime}
+              date={writing.date}
+              key={writing.slug}
+              slug={writing.slug}
+              title={writing.title}
+              description={writing.description}
             />
           ))}
         </div>
