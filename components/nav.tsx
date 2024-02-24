@@ -4,8 +4,9 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { PenLine, Sparkles, Home as HomeIcon } from "lucide-react";
+import { PenLine, Sparkles, Home as HomeIcon, CodeSquareIcon } from "lucide-react";
 import { useKeyPress } from "@/hooks/useKeyPress";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
 
 
 const links =
@@ -24,9 +25,21 @@ const links =
     },
     {
       icon: PenLine,
-      title: "writing",
-      href: "/writing",
+      title: "blog",
+      href: "/blog",
       shortcut: "3",
+    },
+    {
+      icon: CodeSquareIcon,
+      title: "snippet",
+      href: "/snippet",
+      shortcut: "4",
+    },
+    {
+      icon: CodeSquareIcon,
+      title: "guestbook",
+      href: "/guestbook",
+      shortcut: "5",
     },
   ]
 
@@ -38,15 +51,14 @@ const Nav = () => {
   const router = useRouter();
   const onKeyPress = (event: KeyboardEvent) => {
     event.preventDefault();
-    if (event.code === "Digit1") {
-      router.push("/");
-    } else if (event.code === "Digit2") {
-      router.push("/projects");
-    } else if (event.code === "Digit3") {
-      router.push("/writing");
-    }
+    links.forEach((link) => {
+      if (event.code === `Digit${link.shortcut}`) {
+        router.push(link.href);
+      }
+    });
   };
-  useKeyPress(["Digit1", "Digit2", "Digit3"], onKeyPress);
+  const digits = links.map((link) => `Digit${link.shortcut}`)
+  useKeyPress(digits, onKeyPress);
 
   React.useEffect(() => {
     if (!ref.current) return;
@@ -59,35 +71,64 @@ const Nav = () => {
     };
   }, [])
 
+  const { scrollYProgress } = useScroll()
+  const [visible, setVisible] = React.useState(true)
+
+  useMotionValueEvent(scrollYProgress, "change", (current) => {
+    if (typeof current === "number") {
+      let direction = current! - scrollYProgress.getPrevious()!
+
+      if (scrollYProgress.get() >= 0.95) {
+        setVisible(true)
+      } else {
+        if (direction < 0) {
+          setVisible(true)
+        } else {
+          setVisible(false)
+        }
+      }
+    }
+  })
+
   return (
     <header ref={ref}>
-      <div className={cn("fixed inset-x-0 top-0 z-50  duration-200 p-4"
-      )}>
-        <div className={cn("mx-auto container py-2  w-max",
-          !isIntersecting && "border rounded-full backdrop-blur"
-        )}>
-          <div className="flex gap-4 w-max">
-            {links.map((link) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                className={cn(
-                  "flex items-center text-muted-foreground/50 hover:text-foreground transition-all duration-200 rounded-md w-full",
-                  pathname === link.href && "text-foreground",
-                  pathname.startsWith("/writing") &&
-                  link.href === "/writing" &&
-                  "text-foreground",
-                )}
-              >
-                <p className=" text-xs h-5 w-5 grid place-content-center  border rounded-md mr-2">
-                  {link.shortcut}
-                </p>
-                <p>{link.title}</p>
-              </Link>
-            ))}
-          </div>
+      <AnimatePresence mode="wait">
+        <div className="fixed inset-x-0 top-0 z-50 duration-200 p-4">
+          <motion.div
+            animate={{
+              y: visible ? 0 : -100,
+              opacity: visible ? 1 : 0,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
+            className={cn("mx-auto container py-2 w-max backdrop-blur border rounded-full border-background transition-all duration-100",
+              !isIntersecting && "border-zinc-600"
+            )}
+          >
+            <div className="flex gap-4 w-max">
+              {links.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className={cn(
+                    "flex items-center text-muted-foreground/50 hover:text-foreground transition-all duration-200 rounded-md w-full",
+                    pathname === link.href && "text-foreground",
+                    pathname.startsWith("/blog") &&
+                    link.href === "/blog" &&
+                    "text-foreground",
+                  )}
+                >
+                  <p className=" text-xs h-5 w-5 grid place-content-center  border rounded-md mr-2">
+                    {link.shortcut}
+                  </p>
+                  <p>{link.title}</p>
+                </Link>
+              ))}
+            </div>
+          </motion.div>
         </div>
-      </div>
+      </AnimatePresence>
     </header>
   );
 };

@@ -56,18 +56,15 @@ export const Writing = defineDocumentType(() => ({
   contentType: "mdx",
 
   fields: {
-    published: {
-      type: "boolean",
-    },
     title: {
       type: "string",
       required: true,
     },
-    description: {
+    summary: {
       type: "string",
       required: true,
     },
-    date: {
+    publishedAt: {
       type: "date",
       required: true,
     },

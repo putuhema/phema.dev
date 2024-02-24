@@ -1,6 +1,8 @@
 import { Card } from "@/components/card";
 import Container from "@/components/container";
+import Footer from "@/components/footer";
 import Nav from "@/components/nav";
+import PageHeader from "@/components/page-header";
 import Project from "@/components/project";
 import { allProjects } from "contentlayer/generated";
 
@@ -10,14 +12,15 @@ export default function Projects() {
   });
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-gradient-to-tl from-background to-background">
+    <div className="flex flex-col  bg-gradient-to-tl from-background to-background">
       <Nav />
       <Container>
-        <h1 className="text-2xl font-bold">Projects</h1>
-        <p>projects that i worked on college, bootcamp and my free time.</p>
-        <div className="border border-b my-8" />
-        <div className="grid grid-cols-3 gap-4">
-          <div className="grid grid-cols-1 gap-4">
+        <PageHeader
+          title="Projects"
+          description="projects that i work on time in earth."
+        />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 mt-8">
+          <div className="grid grid-cols-1 gap-2">
             {projects
               .filter((_, i) => i % 3 === 0)
               .map((project, i) => (
@@ -34,7 +37,7 @@ export default function Projects() {
                 </Card>
               ))}
           </div>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-2">
             {projects
               .filter((_, i) => i % 3 === 1)
               .map((project, i) => (
@@ -51,7 +54,7 @@ export default function Projects() {
                 </Card>
               ))}
           </div>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-2">
             {projects
               .filter((_, i) => i % 3 === 2)
               .map((project, i) => (
@@ -69,7 +72,7 @@ export default function Projects() {
               ))}
           </div>
         </div>
-
+        <Footer />
       </Container>
     </div>
   );

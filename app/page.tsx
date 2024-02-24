@@ -1,18 +1,18 @@
-import Footer from "@/components/footer";
 import Nav from "@/components/nav";
 import Particles from "@/components/particles";
+import Social from "@/components/social";
 import { FollowerPointerCard } from "@/components/ui/following-pointer";
 import { Icon } from "@/components/ui/icon";
 import { TypewriterEffect } from "@/components/ui/typewritter";
 
 export default function Home() {
   return (
-    <div className="h-[100dvh] w-full border bg-background dark:bg-dot-white/[0.1] bg-dot-black/[0.1] relative flex flex-col items-center justify-center">
+    <div className="h-[100dvh] w-full border bg-background dark:bg-grid-small-white/[0.1] bg-grid-small-black/[0.1] relative flex flex-col items-center justify-center">
       <Particles
         className="absolute inset-0 z-0 animate-fade-in"
         quantity={100}
       />
-      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className="absolute pointer-events-none inset-0 flex items-center justify-center bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       <Nav />
       <div className="lg:w-[550px]">
         <FollowerPointerCard>
@@ -26,7 +26,7 @@ export default function Home() {
         </FollowerPointerCard>
       </div>
       <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 p-4">
-        <Footer />
+        <Social />
       </div>
     </div>
   );

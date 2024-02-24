@@ -17,13 +17,13 @@ const Writing = ({ params }: Params) => {
   }
 
   return (
-    <main>
+    <main className="max-w-3xl mx-auto">
       <PostHeader
         title={writing.title}
-        date={writing.date}
+        publisedAt={writing.publishedAt}
         readingTime={writing.readTime}
       />
-      <article className="prose prose-sm md:prose-base lg:prose-lg prose-gray dark:prose-invert">
+      <article className=" prose prose-sm md:prose-base lg:prose-lg prose-gray dark:prose-invert">
         <Mdx code={writing.body.code} />
       </article>
     </main>

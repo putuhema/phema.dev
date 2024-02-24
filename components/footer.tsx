@@ -1,64 +1,14 @@
-import {
-  FileIcon,
-  GitHubLogoIcon,
-  LinkedInLogoIcon,
-  TwitterLogoIcon,
-} from "@radix-ui/react-icons";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import Link from "next/link";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="flex justify-center items-center   text-sm">
-      <div className="flex items-center justify-center gap-2 my-4">
-        {[
-          {
-            icon: <GitHubLogoIcon />,
-            title: "GitHub",
-            url: "https://github.com/putuhema",
-          },
-          {
-            icon: <LinkedInLogoIcon />,
-            title: "LinkedIn",
-            url: "https://linkedin.com/in/putuhema",
-          },
-          {
-            icon: <TwitterLogoIcon />,
-            title: "Twitter",
-            url: "https://twitter.com/putuhema_",
-          },
-          {
-            icon: <FileIcon />,
-            title: "CV",
-            url: "/cv-ats-putu-hendra-mahendra.pdf",
-          },
-        ].map((social) =>
-          social.title !== "CV" ? (
-            <a
-              href={social.url}
-              key={social.title}
-              target="_blank"
-              rel="noreferrer"
-              className={cn(buttonVariants({ variant: "link" }), "w-max")}
-            >
-              <span className="mr-2">{social.icon}</span>
-              {social.title}
-            </a>
-          ) : (
-            <a
-              href={social.url}
-              key={social.title}
-              download
-              className={cn(buttonVariants({ variant: "link" }), "w-max")}
-            >
-              <span className="mr-2">{social.icon}</span>
-              {social.title}
-            </a>
-          ),
-        )}
+    <footer>
+      <div className="flex gap-2 items-center justify-end mt-6 mb-24">
+        <p className="text-muted-foreground text-sm">
+          Handcraft by
+        </p>
+        <Link href="https://github.com/putuhema" className="underline">putuhema</Link>
       </div>
     </footer>
-  );
-};
-
-export default Footer;
+  )
+}

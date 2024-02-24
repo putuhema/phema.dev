@@ -5,14 +5,14 @@ import Link from "next/link";
 
 type Props = {
   title: string;
-  date: string;
+  publisedAt: string;
   readingTime: string;
 };
-const PostHeader = ({ title, date, readingTime }: Props) => {
+const PostHeader = ({ title, publisedAt, readingTime }: Props) => {
   return (
     <div className="border-b mb-10 pb-4">
       <Link
-        href="/writing"
+        href="/blog"
         className="flex items-center gap-2 transform translate-x-0 hover:-translate-x-2 transition-all duration-200 text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="h-5 w-4" />
@@ -20,7 +20,7 @@ const PostHeader = ({ title, date, readingTime }: Props) => {
       </Link>
       <PostTitle>{title}</PostTitle>
       <div className="flex mt-2 text-muted-foreground text-sm ">
-        <p>{format(new Date(date), "PP")}</p>
+        <p>{format(new Date(publisedAt), "PP")}</p>
         <Dot />
         <p className="italic">{readingTime}</p>
       </div>
