@@ -22,25 +22,25 @@ const links =
       title: "projects",
       href: "/projects",
       shortcut: "2",
-    },
-    {
-      icon: PenLine,
-      title: "blog",
-      href: "/blog",
-      shortcut: "3",
-    },
-    {
-      icon: CodeSquareIcon,
-      title: "snippet",
-      href: "/snippet",
-      shortcut: "4",
-    },
-    {
-      icon: CodeSquareIcon,
-      title: "guestbook",
-      href: "/guestbook",
-      shortcut: "5",
-    },
+    }
+    // {
+    //   icon: PenLine,
+    //   title: "blog",
+    //   href: "/blog",
+    //   shortcut: "3",
+    // },
+    // {
+    //   icon: CodeSquareIcon,
+    //   title: "snippet",
+    //   href: "/snippet",
+    //   shortcut: "4",
+    // },
+    // {
+    //   icon: CodeSquareIcon,
+    //   title: "guestbook",
+    //   href: "/guestbook",
+    //   shortcut: "5",
+    // },
   ]
 
 const Nav = () => {
