@@ -1,50 +1,105 @@
-import { notFound } from "next/navigation";
-import { allWritings } from "contentlayer/generated";
-import PostHeader from "@/components/post-header";
-import { Mdx } from "@/components/mdx"
-import "./mdx.css"
+import { notFound } from 'next/navigation'
+import { CustomMDX } from '@/components/mdx'
+import { getBlogPosts } from '../utils'
+import { baseUrl } from '@/app/sitemap'
+import { format } from 'date-fns'
 
-interface Params {
+type Params = {
   params: {
     slug: string;
-  };
-}
-
-const Writing = ({ params }: Params) => {
-  const writing = allWritings.find((writing) => writing.slug === params.slug);
-  if (!writing) {
-    return notFound();
-  }
-
-  return (
-    <main className="max-w-3xl mx-auto">
-      <PostHeader
-        title={writing.title}
-        publisedAt={writing.publishedAt}
-        readingTime={writing.readTime}
-      />
-      <article className=" prose prose-sm md:prose-base lg:prose-lg prose-gray dark:prose-invert">
-        <Mdx code={writing.body.code} />
-      </article>
-    </main>
-  );
-};
-
-export default Writing;
-
-export function generateMetadata({ params }: Params) {
-  const writing = allWritings.find(writing => writing.slug === params.slug)
-  if (!writing) {
-    return notFound()
-  }
-
-  return {
-    title: writing.title,
   }
 }
 
 export async function generateStaticParams() {
-  return allWritings.map((writing) => ({
-    slug: writing.slug,
-  }));
+  let posts = getBlogPosts()
+
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
+export function generateMetadata({ params }: Params) {
+  let post = getBlogPosts().find((post) => post.slug === params.slug)
+  if (!post) {
+    return
+  }
+
+  let {
+    title,
+    date: publishedTime,
+    summary: description,
+    image,
+  } = post.metadata
+  let ogImage = image
+    ? image
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      publishedTime,
+      url: `${baseUrl}/blog/${post.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
+  }
+}
+
+export default function Blog({ params }: Params) {
+  let post = getBlogPosts().find((post) => post.slug === params.slug)
+
+  if (!post) {
+    notFound()
+  }
+
+  return (
+    <section>
+      <script
+        type="application/ld+json"
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.metadata.title,
+            datePublished: post.metadata.date,
+            dateModified: post.metadata.date,
+            description: post.metadata.summary,
+            image: post.metadata.image
+              ? `${baseUrl}${post.metadata.image}`
+              : `/og?title=${encodeURIComponent(post.metadata.title)}`,
+            url: `${baseUrl}/blog/${post.slug}`,
+            author: {
+              '@type': 'Person',
+              name: 'My Portfolio',
+            },
+          }),
+        }}
+      />
+      <h1 className="title font-semibold text-2xl tracking-tighter">
+        {post.metadata.title}
+      </h1>
+      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          {format(new Date(post.metadata.date), "PP")}
+        </p>
+      </div>
+      <article className="prose pb-24">
+        <CustomMDX source={post.content} />
+      </article>
+    </section>
+  )
 }

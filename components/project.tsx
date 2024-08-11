@@ -26,7 +26,7 @@ const Project = ({ project }: Props) => {
         {
           project.techstack && (
             <div className="w-full flex flex-wrap gap-2 mt-4">
-              {project.techstack.map((tech) => (
+              {project.techstack.filter(t => t.length > 0).map((tech) => (
                 <Badge
                   key={tech}
                   className="bg-transparent border border-zinc-600 text-foreground hover:bg-transparent"

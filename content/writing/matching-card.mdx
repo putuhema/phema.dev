@@ -1,0 +1,69 @@
+---
+title: "MiniGame: Matching Card"
+date: "2024-08-11"
+summary: "Building Matching card game for the first time."
+---
+
+## Introduction
+
+Welcome to my blog post about creating a matching card game using react. In this post, I'll share my journey of developing this game, including what i learned along the way and how i implemeted various features.
+
+## Game Overview
+
+The Matching card game is a classic memory game where players need to find pairs of matching cards. Here are the basic rules:
+
+- Cards are laid face down on a surface
+- Players take turns flipping over two cards at a time
+- If two cards match, the player gets a point and player switching turn
+- If they don't match, the cards are turned face down again
+- The games end when all cards are matched
+- The player with the most points win
+
+## Making my first AI
+
+For my matching card game, I want the second opponent to be an AI. I know there's a lot going on with AI these days, but I've never made one before—even the simplest kind. Why? I'm not sure—maybe because I thought it would be really hard, you know, with all the math and stuff. But for this project, I want to give it a try. With the help of the internet and GPTs, I've learned that creating an AI for this game isn't too hard after all.
+
+The basic idea for my AI is that it just needs to remember its moves and the player's moves, and then make decisions based on this memory instead of making random picks for the flipped cards.
+
+```tsx
+const makeMove = (card: Item) => {
+  updateAIMemory(card);
+  handleSelectCard(card);
+};
+
+if (Math.random() < mistakeProbability) {
+  [firstPick, secondPick] = selectWeightCards(unmathedGlobal, 2);
+}
+
+makeMove(firstPick);
+
+const delayTime = Math.random() * 1000 + 1500;
+setTimeout(makeMove(secondPick), delayTime);
+```
+
+### AI pick the first & second card
+
+// continue later
+
+```tsx
+const selectWeightCards = (cards: Item[], count: number): Item[] => {
+  const unseenCards = cards.filter(
+    (card) => !aiMemory.some((memCard) => memCard.id === card.id)
+  );
+
+  if (unseenCards.length >= count) {
+    return shuffleArray(unseenCards).slice(0, count);
+  } else {
+    const seenCards = aiMemory.filter(
+      (card) => !gameState.matchedPairs.has(card.id)
+    );
+
+    const weightSelection = weightRandomSelection(
+      seenCards,
+      calculateWeight,
+      count - unseenCards.length
+    );
+    return [...shuffleArray(unseenCards), ...weightSelection];
+  }
+};
+```
