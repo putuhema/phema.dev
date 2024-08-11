@@ -15,8 +15,6 @@ export default function Projects() {
     return 1
   })
 
-  console.log({ tech: projects[0].metadata.techstack })
-
 
   return (
     <div className="flex flex-col  bg-gradient-to-tl from-background to-background">
