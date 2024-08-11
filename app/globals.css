@@ -150,15 +150,15 @@ html {
 }
 
 .prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  @apply text-xl text-foreground font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  @apply text-foreground text-xl font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h4 {
-  @apply text-lg font-medium tracking-tight mt-6 mb-2;
+  @apply text-foreground text-lg font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose strong {
@@ -166,11 +166,11 @@ html {
 }
 
 .prose ul {
-  @apply list-disc pl-6;
+  @apply text-foreground list-disc pl-6;
 }
 
 .prose ol {
-  @apply list-decimal pl-6;
+  @apply text-foreground list-decimal pl-6;
 }
 
 .prose > :first-child {
