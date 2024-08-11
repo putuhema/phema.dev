@@ -1,10 +1,18 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import Link, { LinkProps } from 'next/link'
+import Image, { ImageProps } from 'next/image'
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
 import React from 'react'
 
-function Table({ data }) {
+type TableProps = {
+  data: {
+    headers: string[]
+    rows: string[][]
+  }
+}
+
+
+function Table({ data }: TableProps) {
   let headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ))
@@ -26,7 +34,8 @@ function Table({ data }) {
   )
 }
 
-function CustomLink(props) {
+
+function CustomLink(props: any) {
   let href = props.href
 
   if (href.startsWith('/')) {
@@ -43,12 +52,10 @@ function CustomLink(props) {
 
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
-
-function RoundedImage(props) {
+function RoundedImage({ ...props }: any) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />
 }
-
-function Code({ children, ...props }) {
+function Code({ children, ...props }: { children: string }) {
   let codeHTML = highlight(children)
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
@@ -99,7 +106,8 @@ let components = {
   Table,
 }
 
-export function CustomMDX(props) {
+
+export function CustomMDX(props: any) {
   return (
     <MDXRemote
       {...props}
