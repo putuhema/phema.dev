@@ -4,10 +4,6 @@ date: "2024-08-11"
 summary: "Building Matching card game for the first time."
 ---
 
-## Introduction
-
-Welcome to my blog post about creating a matching card game using react. In this post, I'll share my journey of developing this game, including what i learned along the way and how i implemeted various features.
-
 ## Game Overview
 
 The Matching card game is a classic memory game where players need to find pairs of matching cards. Here are the basic rules:
@@ -41,9 +37,11 @@ const delayTime = Math.random() * 1000 + 1500;
 setTimeout(makeMove(secondPick), delayTime);
 ```
 
-### AI pick the first & second card
+## AI first and second move
 
-// continue later
+### Weighted Selection
+
+Weighted Selection, also known as weighted random selection or weighted random sampling, is a technique used to randomly choose items from a set where each item has a different probability of being selected. In my context, it's used to select previously seen cards in a way that not purely random, but influenced by certain factors.
 
 ```tsx
 const selectWeightCards = (cards: Item[], count: number): Item[] => {
@@ -67,3 +65,56 @@ const selectWeightCards = (cards: Item[], count: number): Item[] => {
   }
 };
 ```
+
+- Basic Concept:
+  In a regular random selection, each item has an equal chance of being chosen. In weighted selection, each item assigned a "weight" that influences its probability of selection. Items with higer weights are more likely to be chosen.
+- Implementation of weighted selection:
+
+```ts
+const calculateWeight = (item: MemoryItem): number => {
+  const turnsAgo = turnCounterRef.current - item.lastSeen;
+  const baseWeight = Math.max(1, 15 - Math.sqrt(turnsAgo));
+
+  const multipleSeenBonus = Math.min(item.seenCount || 0, 5);
+
+  switch (gameState.difficulty) {
+    case "easy":
+      return baseWeight * 0.5 + multipleSeenBonus;
+    case "medium":
+      return baseWeight + multipleSeenBonus;
+    case "hard":
+      return baseWeight * 1.5 + multipleSeenBonus * 2;
+    default:
+      return baseWeight;
+  }
+};
+```
+
+The `calculateWeight` function determines how likely the AI is to "remember" and select a particular card in a memory game. It simulates the AI's memory process by considering how recently the AI has seen a card, how often it has encountered it, and adjusts based on the game's difficulty level. In harder difficulties, the AI's "memory" becomes sharper, making it more likely to recall recently and frequently seen cards. This function creates an adaptive AI opponent that can provide an appropriate challenge to the human player, with its "memory skills" scaling based on the chosen difficulty setting.
+
+```ts
+function weightRandomSelection<T>(
+  items: T[],
+  weightFn: (item: T) => number,
+  count: number
+): T[] {
+  const weights = items.map(weightFn);
+  const totalWeight = weights.reduce((acc, weight) => acc + weight, 0);
+
+  const selected: T[] = [];
+  for (let i = 0; i < count; i++) {
+    let randomWeight = Math.random() * totalWeight;
+    for (let j = 0; j < items.length; j++) {
+      randomWeight -= weights[j];
+      if (randomWeight <= 0) {
+        selected.push(items[j]);
+        break;
+      }
+    }
+  }
+
+  return selected;
+}
+```
+
+The `weightRandomSelection` function selects a specified number of items from an array using a weighted probability system, where each item's likelihood of being chosen is determined by a provided weight function.

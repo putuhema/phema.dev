@@ -30,31 +30,21 @@ const Social = () => {
           {
             icon: <FileIcon />,
             title: "CV",
-            url: "/cv-ats-putu-hendra-mahendra.pdf",
+            url: "https://drive.google.com/file/d/13E8xg4_CXG_SuNOVqyi4_gFzneAE0vFp/view?usp=drive_link",
           },
         ].map((social) =>
-          social.title !== "CV" ? (
-            <a
-              href={social.url}
-              key={social.title}
-              target="_blank"
-              rel="noreferrer"
-              className={cn(buttonVariants({ variant: "link" }), "w-max")}
-            >
-              <span className="mr-2">{social.icon}</span>
-              {social.title}
-            </a>
-          ) : (
-            <a
-              href={social.url}
-              key={social.title}
-              download
-              className={cn(buttonVariants({ variant: "link" }), "w-max")}
-            >
-              <span className="mr-2">{social.icon}</span>
-              {social.title}
-            </a>
-          ),
+        (
+          <a
+            href={social.url}
+            key={social.title}
+            target="_blank"
+            rel="noreferrer"
+            className={cn(buttonVariants({ variant: "link" }), "w-max")}
+          >
+            <span className="mr-2">{social.icon}</span>
+            {social.title}
+          </a>
+        )
         )}
       </div>
     </footer>
