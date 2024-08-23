@@ -142,7 +142,7 @@ function AboutMe() {
         <div className="flex gap-2 items-center text-base ">
           <span className="h-2 w-2 animate-pulse bg-accent rounded-full inline-block" />Putu Mahendra</div>
         <ContactItem icon={<ScribbleLoop />}>
-          <Link href="/visitors">Sign the visitor's log</Link>
+          <Link href="/visitors">Sign the visitor&apos;s log</Link>
         </ContactItem>
       </div>
       <div>

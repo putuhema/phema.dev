@@ -2,7 +2,7 @@
 
 import { RefObject, useEffect, useState } from "react";
 import useMaxZIndex from "@/hooks/useMaxZIndex";
-import { cn, getRandomRotation } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { motion, type PanInfo, useAnimation } from "framer-motion";
 import React from "react";
 
