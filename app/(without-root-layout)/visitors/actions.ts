@@ -41,6 +41,7 @@ export async function validateAndSaveEntry(
 
     return { success: true };
   } catch (error) {
+    console.log(error);
     if (error instanceof z.ZodError) {
       return { success: false, errors: error.flatten().fieldErrors };
     }
