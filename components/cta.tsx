@@ -202,9 +202,7 @@ export default function WriteNoteCTA() {
 
   const handleSubmit = async (formData: FormData) => {
 
-    console.log("validate and save")
     const result = await validateAndSaveEntry(formData);
-    console.log(result)
     if (!result.success) {
       //@ts-ignore
       setErrors(result.errors);
@@ -222,8 +220,6 @@ export default function WriteNoteCTA() {
       initialY: getRandomPosition(100, window.innerHeight - 100),
     };
     setLocalEntries((prev) => [newEntry, ...prev]);
-    console.log("save")
-
 
     setStep(3);
     setIsOpen(false);
