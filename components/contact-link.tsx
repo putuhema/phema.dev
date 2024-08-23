@@ -46,7 +46,7 @@ export const ContactItem = ({
     >
       <Slot>{children}</Slot>
       <div
-        className="group-hover:opacity-100 opacity-0 absolute -right-4 bottom-[5px] bg-accent shrink-0 block w-3 h-3 text-[black]"
+        className="group-hover:opacity-100 opacity-0 absolute -right-6 bottom-[5px] bg-accent/80 shrink-0 block w-4 h-4 text-[black]"
         aria-hidden={true}
       >
         {icon}

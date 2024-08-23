@@ -3,10 +3,12 @@ import Contact, { ContactItem } from "@/components/contact-link";
 import Section from "@/components/section";
 import Link from "next/link";
 import LinkPrimitive from "@/components/link-primitive";
-import { ArrowLeft, ArrowUpRight, ScribbleLoop } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight, PencilLine, ScribbleLoop } from "@phosphor-icons/react/dist/ssr";
 import { Suspense } from "react";
 import Skeleton from "@/components/skeleton";
 import StickerContainer from "@/components/sticker-container";
+import { BlogPosts } from "@/components/posts";
+import { getPostsSize } from "./blog/utils";
 
 const Projects = () => {
   return (
@@ -119,24 +121,47 @@ const FooterDate = async () => {
   );
 };
 
+function RecentWriting() {
+  return (
+    <Section heading="Recent Writing">
+      <BlogPosts first3 />
+      {
+        getPostsSize() > 3 &&
+        <ContactItem className="w-max" icon={<PencilLine />}>
+          <Link href="/blog">See More</Link>
+        </ContactItem>
+      }
+    </Section>
+  )
+}
+
+function AboutMe() {
+  return (
+    <Section>
+      <div className="flex justify-between items-center">
+        <div className="flex gap-2 items-center text-base ">
+          <span className="h-2 w-2 animate-pulse bg-accent rounded-full inline-block" />Putu Mahendra</div>
+        <ContactItem icon={<ScribbleLoop />}>
+          <Link href="/visitors">Sign the visitor's log</Link>
+        </ContactItem>
+      </div>
+      <div>
+
+      </div>
+      <p className="text-gray-11 text-sm mb-8">Web Developer</p>
+      <p>Creating interesting stuff in web world. I dedicate most my time to continuous learning and refining my skillset and knowledge.</p>
+    </Section>
+
+  )
+}
+
 
 export default function Home() {
   return (
-    <div className="px-10 md:px-0 w-full md:w-[500px] md:mx-auto relative min-h-screen">
-      <Section>
-        <div className="flex justify-between items-center">
-          <div className="flex gap-2 items-center text-base ">
-            <span className="h-2 w-2 animate-pulse bg-accent rounded-full inline-block" />Putu Mahendra</div>
-          <ContactItem icon={<ScribbleLoop />}>
-            <Link href="/visitors">Sign the visitor's log</Link>
-          </ContactItem>
-        </div>
-        <p className="text-gray-11 text-sm mb-8">Web Developer</p>
-        <p>Creating interesting stuff in web world. I dedicate most my time to continuous learning and refining my skillset and knowledge.</p>
-        <Link href="/blog" className="underline underline-offset-4 decoration-accent text-gray-11">sometimes i write stuff...</Link>
-
-      </Section>
+    <div className="px-10 md:px-0 w-full md:max-w-lg md:mx-auto min-h-screen relative ">
+      <AboutMe />
       <Projects />
+      <RecentWriting />
       <Contact />
       <Footer />
       <StickerContainer />

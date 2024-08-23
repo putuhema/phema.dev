@@ -68,7 +68,7 @@ export default function Blog({ params }: Params) {
   }
 
   return (
-    <section className='w-max mx-auto'>
+    <section className='px-10 md:px-0 w-full md:max-w-lg md:mx-auto min-h-screen'>
       <Link
         href="/"
         className="flex gap-x-1 bg-accent text-gray-12 w-fit rounded-sm pl-0.5 pr-1 py-0.5 leading-none items-center hover:bg-accent/50 transition duration-100 mx-1"
