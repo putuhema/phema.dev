@@ -19,22 +19,22 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    colors: {
-      gray: generateScale("gray"),
-      accent: "#E93D82",
-    },
-    fontSize: {
-      sm: "0.75rem",
-      base: "0.875rem",
-    },
-    borderRadius: {
-      sm: "1px",
-      md: "2px",
-      "4": "4px",
-      "6": "6px",
-      full: "9999px",
-    },
     extend: {
+      fontSize: {
+        sm: "0.75rem",
+        base: "0.875rem",
+      },
+      colors: {
+        gray: generateScale("gray"),
+        accent: "#E93D82",
+      },
+      borderRadius: {
+        sm: "1px",
+        md: "2px",
+        "4": "4px",
+        "6": "6px",
+        full: "9999px",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
