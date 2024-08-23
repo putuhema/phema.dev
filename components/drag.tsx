@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject, useState } from "react";
+import { RefObject, useEffect, useState } from "react";
 import useMaxZIndex from "@/hooks/useMaxZIndex";
 import { cn, getRandomRotation } from "@/lib/utils";
 import { motion, type PanInfo, useAnimation } from "framer-motion";
@@ -23,32 +23,39 @@ const Drag = React.memo(
   }) => {
     const [zIndex, updateZIndex] = useMaxZIndex();
     const controls = useAnimation();
-    const r = getRandomRotation();
-    const [initialRotate] = useState(r);
+    const [position, setPosition] = useState({ x: initialX ?? 0, y: initialY ?? 0 });
+    const [rotation, setRotation] = useState(0);
 
-    const getInitialPosition = () => {
-      if (parentRef?.current) {
-        const { width, height } = parentRef.current.getBoundingClientRect();
+    useEffect(() => {
+      const getRandomRotation = () => Math.floor(Math.random() * 60) - 30;
+      const getRandomPosition = () => {
+        if (parentRef?.current) {
+          const { width, height } = parentRef.current.getBoundingClientRect();
+          return {
+            x: initialX ?? Math.floor(Math.random() * (width - 100)),
+            y: initialY ?? Math.floor(Math.random() * (height - 100)),
+          };
+        }
         return {
-          x: initialX ?? Math.floor(Math.random() * (width - 100)),
-          y: initialY ?? Math.floor(Math.random() * (height - 100)),
+          x: initialX ?? Math.floor(Math.random() * 1000),
+          y: initialY ?? Math.floor(Math.random() * 1000),
         };
-      }
-      return {
-        x: initialX ?? Math.floor(Math.random() * 1000),
-        y: initialY ?? Math.floor(Math.random() * 1000),
       };
-    };
 
-    const { x, y } = getInitialPosition();
+      const randomRotation = getRandomRotation();
+      const randomPosition = getRandomPosition();
 
+      setRotation(randomRotation);
+      setPosition(randomPosition);
+      controls.start({ rotate: randomRotation, x: randomPosition.x, y: randomPosition.y });
+    }, [initialX, initialY, parentRef, controls]);
 
     const handleDragEnd = (event: MouseEvent, info: PanInfo) => {
       const direction = info.offset.x > 0 ? 1 : -1;
       const velocity = Math.min(Math.abs(info.velocity.x), 1);
 
       controls.start({
-        rotate: Math.floor(initialRotate + velocity * 40 * direction),
+        rotate: rotation + velocity * 40 * direction,
         transition: {
           type: "spring",
           stiffness: 50,
@@ -58,6 +65,7 @@ const Drag = React.memo(
         },
       });
     };
+
     return (
       <motion.div
         drag
@@ -72,13 +80,12 @@ const Drag = React.memo(
         onTouchStart={updateZIndex}
         onDragEnd={handleDragEnd}
         animate={controls}
-        initial={{
-          rotate: r,
-          x,
-          y,
-        }}
+        initial={false}
         style={{
           zIndex,
+          x: position.x,
+          y: position.y,
+          rotate: rotation,
         }}
         {...props}
       >

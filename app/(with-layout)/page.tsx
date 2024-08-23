@@ -155,7 +155,6 @@ function AboutMe() {
   )
 }
 
-
 export default function Home() {
   return (
     <div className="px-10 md:px-0 w-full md:max-w-lg md:mx-auto min-h-screen relative ">
