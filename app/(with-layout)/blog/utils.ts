@@ -7,6 +7,7 @@ interface Metadata {
   summary: string;
   image?: string;
   repository?: string;
+  url?: string;
   techstack: string;
 }
 

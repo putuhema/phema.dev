@@ -1,4 +1,4 @@
-import { getBlogPosts } from "./blog/utils";
+import { getBlogPosts } from "./(with-layout)/blog/utils";
 
 export const baseUrl = "https://localhost:3000";
 

@@ -3,6 +3,8 @@ import { CustomMDX } from '@/components/mdx'
 import { getBlogPosts } from '../utils'
 import { baseUrl } from '@/app/sitemap'
 import { format } from 'date-fns'
+import Link from 'next/link'
+import { ArrowLeft } from '@phosphor-icons/react/dist/ssr'
 
 type Params = {
   params: {
@@ -21,7 +23,7 @@ export async function generateStaticParams() {
 export function generateMetadata({ params }: Params) {
   let post = getBlogPosts().find((post) => post.slug === params.slug)
   if (!post) {
-    return
+    return {}
   }
 
   let {
@@ -67,6 +69,14 @@ export default function Blog({ params }: Params) {
 
   return (
     <section className='w-max mx-auto'>
+      <Link
+        href="/"
+        className="flex gap-x-1 bg-accent text-gray-12 w-fit rounded-sm pl-0.5 pr-1 py-0.5 leading-none items-center hover:bg-accent/50 transition duration-100 mx-1"
+        aria-label="Back"
+      >
+        <ArrowLeft size={16} className="shrink-0" />
+        <span className="text-sm font-medium">Index</span>
+      </Link>
       <script
         type="application/ld+json"
         suppressHydrationWarning
