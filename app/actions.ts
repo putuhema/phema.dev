@@ -14,8 +14,8 @@ export async function saveGuestbookEntry(state: unknown, formData: FormData) {
   const body = entry.slice(0, 500);
 
   await sql`
-    INSERT INTO "guestbook" (created_by, body, last_modified, signature, hasCreatedEntryBefore, local_created_by_id, local_entry_id, approved)
-    VALUES (${created_by}, ${body}, ${new Date().toISOString()}, ${signature}, ${hasCreatedEntryBefore}, ${local_created_by_id}, ${local_entry_id}, ${true});
+    INSERT INTO "guestbook" (created_by, body, last_modified, signature, hasCreatedEntryBefore, local_created_by_id, local_entry_id)
+    VALUES (${created_by}, ${body}, ${new Date().toISOString()}, ${signature}, ${hasCreatedEntryBefore}, ${local_created_by_id}, ${local_entry_id});
   `;
 
   revalidatePath("/visitors");
