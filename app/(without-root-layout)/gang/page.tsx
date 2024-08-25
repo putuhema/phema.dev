@@ -13,7 +13,7 @@ export default function ProtectedPage() {
   }
 
   return (
-    <div className="bg-gray-1 text-gray-12 p-12 h-screen">
+    <div className="bg-black text-gray-1 p-12 h-screen">
       <h1>Welcome to the gang page</h1>
       <p>Only authenticated users can access this page.</p>
       <div
