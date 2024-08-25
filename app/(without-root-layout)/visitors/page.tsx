@@ -1,12 +1,9 @@
 import { Provider } from "jotai";
 import { cn } from "@/lib/utils";
 import styles from "./notes.module.css";
-import Polaroid from "@/components/polaroid";
 import WriteNoteCTA from "@/components/cta";
 import { ArrowLeft } from "@phosphor-icons/react/dist/ssr/ArrowLeft";
 import Link from "next/link";
-import Sticker from "@/components/stickers";
-import Image from "next/image";
 import GuestbookEntries from "@/components/guestbook-entries";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +11,7 @@ export const dynamic = "force-dynamic";
 const Page = () => {
   return (
     <Provider>
-      <div className={cn("h-[100dvh] sm:h-[100vh] p-1 sm:p-6 bg-gray-1")}>
+      <div className={cn("h-[100dvh] sm:h-[100vh] p-1 sm:p-6 bg-black")}>
         <div
           id="mat-container"
           className={cn(
@@ -24,24 +21,13 @@ const Page = () => {
         >
           <div className="z-10">
             <div id="mat-texture" className={styles.matTexture} />
-            <div aria-hidden className={styles.window} />
-            {/* <div aria-hidden className={styles.star}>
-              <Image
-                alt="star drawing"
-                width={80}
-                height={80}
-                src="/images/Star_002.png"
-              />
-            </div> */}
-            {/* <div aria-hidden className={styles.moreNoise} /> */}
+            <div aria-hidden className={styles.moreNoise} />
             <div id="mat-grid" className={styles.matGrid}>
               <div id="diagonal-lines" className={styles.diagonalLines} />
             </div>
           </div>
           <main className="relative z-20 h-full w-full">
-
             <GuestbookEntries />
-
             <Link
               href="/"
               className={cn(

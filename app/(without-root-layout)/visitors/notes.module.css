@@ -3,7 +3,7 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.2),
     0 16px 32px rgba(0, 0, 0, 0.2);
-  background-color: #2e4aeb;
+  background-color: #141622;
 }
 
 .matContainer:after {
@@ -80,25 +80,6 @@
   opacity: 0.75;
   mix-blend-mode: overlay;
   pointer-events: none;
-}
-
-.window {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url(/images/Layer-88.png);
-  background-size: cover;
-  background-position: center;
-  opacity: 0.3;
-  pointer-events: none;
-  mix-blend-mode: normal;
-  z-index: 10000;
-  animation: window-shadow 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite
-    alternate;
-  border-radius: 10px;
-  user-select: none;
 }
 
 @keyframes window-shadow {
